@@ -33,6 +33,27 @@ describe('ToDos Component', () => {
     expect(component.state('newTodo')).toBe('hello')
   })
 
+  it('Should create a new todo on the click of a button and update the UI with it', () => {
+      component.find(".addTask").simulate("click")
+      expect(component.find(ToDo).length).toBe(3)
+  })
+
+  it('Should mark todos as done on the click of a button', () => {
+      component.find(ToDo).first().find('.completed').simulate('click')
+      let completedTasksCount = component.state('toDos').filter((elem) => elem.done === true)
+      expect(completedTasksCount.length).toBe(1)
+  })
+
+  it('Should have todos with the class checked if they are done and unchecked if they are not done', () => {
+      component.find(ToDo).forEach((elem) => {
+          if (elem.prop('task').done) {
+              expect(elem.hasClass('checked'))
+          } else {
+              expect(elem.hasClass('unchecked'))
+          }
+      })
+  })
+
 
 
 })
