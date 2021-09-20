@@ -15,7 +15,7 @@ describe('Counter component', () => {
 
     // check for display of number in component render
     it('should display current value of counter in rendered component', () => {
-        expect(component.contains('number')).toBe(true)
+        expect(component.text()).toEqual("Current Count: 0")
     })
 
     // if button clicked increase number val by one
